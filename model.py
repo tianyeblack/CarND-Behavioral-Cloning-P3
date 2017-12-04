@@ -96,7 +96,7 @@ model.add(Dense(1))
 
 model.compile(loss='mse', optimizer='adam')
 history_data = model.fit_generator(train_generator, steps_per_epoch=math.ceil(len(train_samples) / BATCH_SIZE),
-                                   epochs=3,
+                                   epochs=6,
                                    validation_data=validation_generator,
                                    validation_steps=math.ceil(len(validation_samples) / BATCH_SIZE))
 # model.fit(X_train, y_train, validation_split=0.2, shuffle=True, epochs=5, verbose=1)
