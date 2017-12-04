@@ -1,0 +1,8 @@
+training_data/**/*
+.idea/**/*
+.vscode/**/*
+__pycache__/**/*
+*.iml
+*.zip
+
+
