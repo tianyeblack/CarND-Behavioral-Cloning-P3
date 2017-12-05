@@ -8,14 +8,14 @@ from keras.layers import Flatten, Dense, Lambda, Dropout, Conv2D, Cropping2D
 from sklearn.model_selection import train_test_split
 from random import shuffle
 
-TRAINING_DATA_PATH = 'E://data/'
+TRAINING_DATA_PATH = 'E://mydata/'
 CORRECTION = 0.2
 BATCH_SIZE = 32
 TRAIN_TEST_SPLIT_RATIO = 0.2
 
 
 def convert_path(source):
-    filename = source.split('/')[-1]
+    filename = source.split('\\')[-1]
     return '%sIMG/' % TRAINING_DATA_PATH + filename
 
 
