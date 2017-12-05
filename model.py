@@ -48,9 +48,14 @@ def generator(samples, batch_size=BATCH_SIZE):
             right_images = [cv2.imread(convert_path(s[2])) for s in batch_samples]
             right_angles = [float(s[3]) - CORRECTION for s in batch_samples]
 
+            sample_images = center_images + left_images + right_images
+            sample_angles = center_angles + left_angles + right_angles
+            flip_sample_images = [np.flip(img, 1) for img in sample_images]
+            flip_sample_angles = [-m for m in sample_angles]
+
             # trim image to only see section with road
-            X_sample_train = np.array(center_images + left_images + right_images)
-            y_sample_train = np.array(center_angles + left_angles + right_angles)
+            X_sample_train = np.array(sample_images + flip_sample_images)
+            y_sample_train = np.array(sample_angles + flip_sample_angles)
             yield sklearn.utils.shuffle(X_sample_train, y_sample_train)
 
 
