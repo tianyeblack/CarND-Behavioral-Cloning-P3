@@ -21,7 +21,7 @@ def generator(samples, batch_size=BATCH_SIZE):
         for offset in range(0, num_samples, batch_size):
             batch_samples = samples[offset:offset + batch_size]
 
-            sample_images = [cv2.imread(s[0]) for s in batch_samples]
+            sample_images = [cv2.merge(list(reversed(cv2.split(cv2.imread(s[0]))))) for s in batch_samples]
             sample_angles = [float(s[1]) for s in batch_samples]
 
             # trim image to only see section with road
@@ -57,7 +57,7 @@ model.add(Dense(1))
 
 model.compile(loss='mse', optimizer='adam')
 history_data = model.fit_generator(train_generator, steps_per_epoch=math.ceil(len(train_samples) / BATCH_SIZE),
-                                   epochs=6,
+                                   epochs=3,
                                    validation_data=validation_generator,
                                    validation_steps=math.ceil(len(validation_samples) / BATCH_SIZE))
 # model.fit(X_train, y_train, validation_split=0.2, shuffle=True, epochs=5, verbose=1)
