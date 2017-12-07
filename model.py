@@ -9,7 +9,6 @@ from sklearn.model_selection import train_test_split
 from random import shuffle
 from helper import *
 
-CORRECTION = 0.2
 BATCH_SIZE = 32
 TRAIN_TEST_SPLIT_RATIO = 0.2
 
@@ -31,7 +30,7 @@ def generator(samples, batch_size=BATCH_SIZE):
 
 
 lines = read_logs('augmented_driving_log.csv')
-print(convert_path(lines[0][0]))
+print(lines[0][0])
 
 train_samples, validation_samples = train_test_split(lines, test_size=TRAIN_TEST_SPLIT_RATIO)
 train_generator = generator(train_samples)
@@ -46,7 +45,7 @@ model.add(Conv2D(48, kernel_size=(5, 5), strides=(2, 2), padding='valid', activa
 model.add(Conv2D(64, kernel_size=(3, 3), padding='valid', activation='relu'))
 model.add(Conv2D(64, kernel_size=(3, 3), padding='valid', activation='relu'))
 model.add(Flatten())
-# model.add(Dropout(0.5))
+model.add(Dropout(0.5))
 model.add(Dense(100))
 # model.add(Dropout(0.5))
 model.add(Dense(50))
@@ -57,10 +56,9 @@ model.add(Dense(1))
 
 model.compile(loss='mse', optimizer='adam')
 history_data = model.fit_generator(train_generator, steps_per_epoch=math.ceil(len(train_samples) / BATCH_SIZE),
-                                   epochs=3,
+                                   epochs=5,
                                    validation_data=validation_generator,
                                    validation_steps=math.ceil(len(validation_samples) / BATCH_SIZE))
-# model.fit(X_train, y_train, validation_split=0.2, shuffle=True, epochs=5, verbose=1)
 
 model.save('transfer_learning_model.h5')
 
