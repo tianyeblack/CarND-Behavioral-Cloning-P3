@@ -1,3 +1,6 @@
+import os
+os.environ["PATH"] += os.pathsep + 'C://FFmpeg/bin/'
+
 from moviepy.editor import ImageSequenceClip
 import argparse
 

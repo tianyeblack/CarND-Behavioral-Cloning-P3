@@ -35,7 +35,7 @@ My project includes the following files:
 #### 2. Submission includes functional code
 Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing
 ```python
-python drive.py transfer_learning_model.h5
+python drive.py transfer_learning_model_epoch6.h5
 ```
 
 #### 3. Submission code is usable and readable
@@ -119,4 +119,4 @@ To further augment the data set, I also flipped all images and angles with the n
 
 I finally randomly shuffled the data set and put 20% of the data into a validation set.
 
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was 7 as evidenced by loss visualization, in which validation loss stops to improve as much as training loss but not too much to over fit the data a lot. I used an Adam optimizer so that manually training the learning rate wasn't necessary.
+I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was 6 as evidenced by loss visualization. After the 6th epoch validation loss stops to improve as much as training loss but not too much to over fit the data a lot. I used an Adam optimizer so that manually training the learning rate wasn't necessary.
