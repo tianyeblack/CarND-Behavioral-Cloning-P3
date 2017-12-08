@@ -63,7 +63,7 @@ model.add(Dense(1))
 # Training
 model.compile(loss='mse', optimizer='adam')
 history_data = model.fit_generator(train_generator, steps_per_epoch=math.ceil(len(train_samples) / BATCH_SIZE),
-                                   epochs=7,
+                                   epochs=8,
                                    validation_data=validation_generator,
                                    validation_steps=math.ceil(len(validation_samples) / BATCH_SIZE))
 

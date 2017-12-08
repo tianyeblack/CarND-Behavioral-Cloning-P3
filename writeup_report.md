@@ -85,7 +85,7 @@ I tried to simplify the model, which somehow improved the behaviors a little but
 
 Then I checked my data pipeline again and finally realized I wasn't training on the "right" data. One peculiarity of cv2 is the image read in is BGR, which is the opposite of RGB. I didn't grayscale the data thinking the model needs to recognize the difference in colors. However, my way of converting it from BGR to RGB was wrong. I put it in model as one of the Lambda layers and that applied to both training and simulation images.
 
-After correcting that, the loss dropped but overfit very soon, at around 3 epochs. I added a Dropout layer with rate of 0.5 after the flattening layer. Then the loss dropped even more to around 0.012 and the car followed the lane in the center very well.
+After correcting that, the loss dropped but overfit very soon, at around 3 epochs. I added a Dropout layer with rate of 0.5 after the flattening layer. Then the loss dropped even more to around 0.01 and the car followed the lane in the center very well.
 
 With some trial and error, I found the model reaches the lowest training error at around epoch 6.
 
@@ -112,7 +112,7 @@ Then I repeated this process on track one but a different direction.
 
 After the collection process, I had 10238 number of data points. I then preprocessed the csv by splitting out center, left and right images to each of its own line and add hardcoded correction to the steering angles.
 
-To augment the data sat, I also flipped images and angles thinking that this would double the data set size and still match actual driving since the behaviors for lane following are symmetrical. For example, here is an image and its flipped one:
+To further augment the data set, I also flipped all images and angles with the newly generated csv thinking that this would double the data set size and still match actual driving since the behaviors for lane following are symmetrical. For example, here is an image and its flipped one:
 
 ![Original Image][image2]
 ![Flipped Image][image3]
